@@ -6,11 +6,11 @@
 /*   By: dabi-rac <dabi-rac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 11:16:21 by dabi-rac          #+#    #+#             */
-/*   Updated: 2023/02/08 11:57:46 by dabi-rac         ###   ########.fr       */
+/*   Updated: 2023/02/09 11:15:48 by dabi-rac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/get_next_line.h"
+#include "get_next_line.h"
 
 int	found_newline(t_list *stash)
 {

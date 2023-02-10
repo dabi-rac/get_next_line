@@ -6,21 +6,27 @@
 /*   By: dabi-rac <dabi-rac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 11:43:37 by dabi-rac          #+#    #+#             */
-/*   Updated: 2023/02/08 11:00:02 by dabi-rac         ###   ########.fr       */
+/*   Updated: 2023/02/09 11:13:42 by dabi-rac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/get_next_line.h"
+#include "get_next_line.h"
+
+int	g_molt = 2;
+int	g_casius;
 
 char	*get_next_line(int fd)
 {
 	static t_list	*stash = NULL;
-	char			*line;
+	char			*line;	
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &line, 0) < 0)
+	if (BUFFER_SIZE == 1)
+	g_casius = BUFFER_SIZE * g_molt;
+	else
+		g_casius = BUFFER_SIZE;
+	if (fd < 0 || g_casius <= 0 || read(fd, &line, 0) < 0)
 		return (NULL);
 	line = NULL;
-
 	read_and_stash(fd, &stash);
 	if (stash == NULL)
 		return (NULL);
@@ -41,13 +47,17 @@ void	read_and_stash(int fd, t_list **stash)
 	char	*buf;
 	int		readed;
 
+	if (BUFFER_SIZE == 1)
+		g_casius = BUFFER_SIZE * g_molt;
+	else
+		g_casius = BUFFER_SIZE;
 	readed = 1;
 	while (!found_newline(*stash) && readed != 0)
 	{
-		buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+		buf = malloc(sizeof(char) * (g_casius + 1));
 		if (buf == NULL)
 			return ;
-		readed = (int)read(fd, buf, BUFFER_SIZE);
+		readed = (int)read(fd, buf, g_casius);
 		if ((*stash == NULL && readed == 0) || readed == -1)
 		{
 			free(buf);
@@ -133,7 +143,8 @@ void	clean_stash(t_list **stash)
 		i++;
 	if (last->content && last->content[i] == '\n')
 		i++;
-	clean_node->content = malloc(sizeof(char) * ((ft_strlen(last->content) - i) + 1));
+	clean_node->content = malloc(sizeof(char)
+			*((ft_strlen(last->content) - i) + 1));
 	if (clean_node->content == NULL)
 		return ;
 	j = 0;

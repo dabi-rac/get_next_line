@@ -6,14 +6,13 @@
 /*   By: dabi-rac <dabi-rac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 11:12:19 by dabi-rac          #+#    #+#             */
-/*   Updated: 2023/02/06 17:40:53 by dabi-rac         ###   ########.fr       */
+/*   Updated: 2023/02/09 11:32:47 by dabi-rac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include <stdio.h> // rimuovi per il push
 # include <stdlib.h>
 
 # include <sys/types.h>
@@ -21,7 +20,7 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 5
+#  define BUFFER_SIZE 1
 # endif
 
 typedef struct s_list
